@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@import "tailwindcss";
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.email-input {
+  @apply w-full block rounded-md px-3 py-1.5 bg-white/5 text-base outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6;
+}
+
+.btn {
+  @apply flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2
+    focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer;
+}
