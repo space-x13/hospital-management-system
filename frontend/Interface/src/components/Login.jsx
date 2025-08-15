@@ -1,4 +1,18 @@
+import React, { useState } from "react";
+
 const Login = () => {
+  // making it email and password function and connect to backend later
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({ email, password });
+    // will connect to backend later
+  };
+
   return (
     <>
       <div className="">
@@ -17,7 +31,7 @@ const Login = () => {
 
           {/*login form*/}
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form action="#" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} action="#" method="POST" className="space-y-6">
               {/* email */}
               <div>
                 <label
@@ -35,6 +49,8 @@ const Login = () => {
                     autoComplete="email"
                     className="email-input"
                     placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -67,6 +83,8 @@ const Login = () => {
                     autoComplete="current-password"
                     className="email-input"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
