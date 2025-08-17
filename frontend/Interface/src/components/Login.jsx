@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const LoginPage = () => {
   // making it email and password function and connect to backend later
 
   const [email, setEmail] = useState("");
@@ -10,6 +10,33 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password });
+
+    //retrieve data stored in local storage with 'user'key
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    // conditions for no data entered
+    if (!savedUser) {
+      alert("No user found. Please register");
+      window.location.href = "/register";
+      return;
+    }
+
+    //checking for email and password
+    // matching
+    if (email === savedUser.email && password === savedUser.password) {
+      alert("Login successful");
+
+      if (savedUser.role === "admin") {
+        window.location.href = "/admin";
+      } else if (savedUser.role === "doctor") {
+        window.location.href = "/doctor";
+      } else {
+        window.location.href = "/patient";
+      }
+    } else {
+      alert("Invalid email or password");
+    }
+
     // will connect to backend later
   };
 
@@ -25,13 +52,18 @@ const Login = () => {
               className="w-auto mx-auto h-10"
             />
             <h2 className="text-center text-lg/9 tracking-tight font-medium">
-              Hospital Management System
+              Hospital Management System Login
             </h2>
           </div>
 
           {/*login form*/}
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form onSubmit={handleSubmit} action="#" method="POST" className="space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              action="#"
+              method="POST"
+              className="space-y-6"
+            >
               {/* email */}
               <div>
                 <label
@@ -106,4 +138,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
